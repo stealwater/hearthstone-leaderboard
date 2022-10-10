@@ -15,8 +15,8 @@ function AccountCard({ account }: { account: Models.Document }) {
       <hr />
       {records?.map((record) => (
         <div key={record.$id}>
-          {record.rank} , {record.rating} , {record.diff < 0 ? '' : '+'}
-          {record.diff} , {moment(record.$createdAt).fromNow()}
+          {record.rank} , {record.rating} , {record.changed < 0 ? '' : '+'}
+          {record.changed} , {moment(record.$createdAt).fromNow()}
         </div>
       ))}
       <hr />

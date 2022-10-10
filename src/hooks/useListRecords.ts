@@ -1,5 +1,6 @@
 import { Models, Query } from 'appwrite';
 import { useEffect, useState } from 'react';
+import AppwriteConfig from '../configs/appwriteConfig';
 import { database } from '../utils/appwriteSDK';
 
 const useListRecords = (accountId: string) => {
@@ -7,16 +8,12 @@ const useListRecords = (accountId: string) => {
 
   useEffect(() => {
     const fetchRecords = async () => {
-      const response = await database.listDocuments('Leaderboard', 'record', [
-        Query.equal('accountId', accountId),
-      ]);
+      const response = await database.listDocuments(
+        AppwriteConfig.databaseId,
+        'record',
+        [Query.equal('accountId', accountId), Query.orderDesc('$createdAt')]
+      );
       const records = response.documents;
-      records.map((record, index) => {
-        record.diff = 0;
-        if (index > 0) record.diff = record.rating - records[index - 1].rating;
-        return record;
-      });
-
       setRecords(records);
     };
 

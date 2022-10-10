@@ -1,9 +1,8 @@
-import { Models, Query } from 'appwrite';
 import React, { useEffect, useState } from 'react';
 import AccountCard from '../components/AccountCard';
 import useSearchAccount from '../hooks/useSearchAccount';
 
-function LeaderBoard() {
+function QueryPage() {
   const [query, setQuery] = useState('');
   const { accounts } = useSearchAccount(query);
 
@@ -22,4 +21,4 @@ function LeaderBoard() {
   );
 }
 
-export default LeaderBoard;
+export default QueryPage;

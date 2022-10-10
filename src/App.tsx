@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
-import LeaderBoard from './pages/LeaderBoard';
-import { account, appwrite } from './utils/appwriteSDK';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import LandingPage from './pages/LandingPage';
+import QueryPage from './pages/QueryPage';
+import { account } from './utils/appwriteSDK';
 
 function App() {
   useEffect(() => {
@@ -10,7 +12,13 @@ function App() {
     });
   }, []);
 
-  return <LeaderBoard />;
+  const queryClient = new QueryClient();
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <LandingPage />
+    </QueryClientProvider>
+  );
 }
 
 export default App;
