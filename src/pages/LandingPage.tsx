@@ -10,7 +10,6 @@ function LandingPage() {
   return (
     <>
       <HeroSection />
-      <SearchBox />
       <Container>
         <Grid container rowSpacing={2} columnSpacing={2}>
           <Grid item xs={12} md={4}>
