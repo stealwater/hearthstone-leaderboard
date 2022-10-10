@@ -2,8 +2,11 @@ import { Box, Container, Grid } from '@mui/material';
 import HeroSection from '../components/HeroSection';
 import Leaderboard from '../components/Leaderboard';
 import SearchBox from '../components/SearchBox';
+import useDocTitle from '../hooks/useDocTitle';
 
 function LandingPage() {
+  useDocTitle('Hearthstone Battlegrounds Leaderboard');
+
   return (
     <>
       <HeroSection />

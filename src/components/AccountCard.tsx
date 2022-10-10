@@ -1,9 +1,13 @@
 import { Box, Chip, Grid, Typography } from '@mui/material';
 import { Models } from 'appwrite';
 import moment from 'moment';
+import useDocTitle from '../hooks/useDocTitle';
 import RatingHistoryCard from './RatingHistoryCard';
+import RatingHistoryChart from './RatingHistoryChart';
 
 function AccountCard({ account }: { account: Models.Document }) {
+  useDocTitle(`${account.accountName}`);
+
   return (
     <Box
       mx="auto"
