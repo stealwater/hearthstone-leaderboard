@@ -17,7 +17,7 @@ const useSearchAccount = (query: string, region: string) => {
     };
 
     fetchAccount();
-  }, [query]);
+  }, [query, region]);
 
   return { accounts };
 };
