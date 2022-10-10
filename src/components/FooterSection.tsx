@@ -7,13 +7,13 @@ function FooterSection() {
         sx={{
           flexGrow: 1,
           justifyContent: 'center',
+          alignItems: 'center',
           display: 'flex',
-          mt: 4,
-          height: 20,
+          height: 100,
         }}
       >
         <Typography variant="caption" color="initial">
-          Copyright © 2022
+          HSBG © 2022
         </Typography>
       </Box>
     </Container>

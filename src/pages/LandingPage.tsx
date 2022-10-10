@@ -1,5 +1,4 @@
 import { Box, Container, Grid } from '@mui/material';
-import FooterSection from '../components/FooterSection';
 import HeroSection from '../components/HeroSection';
 import Leaderboard from '../components/Leaderboard';
 import SearchBox from '../components/SearchBox';
@@ -22,7 +21,6 @@ function LandingPage() {
           </Grid>
         </Grid>
       </Container>
-      <FooterSection />
     </>
   );
 }

@@ -4,7 +4,7 @@ import useSearchAccount from '../hooks/useSearchAccount';
 
 function QueryPage() {
   const [query, setQuery] = useState('');
-  const { accounts } = useSearchAccount(query);
+  const { accounts } = useSearchAccount(query, 'AP');
 
   const handleInput = (e: React.FormEvent<HTMLInputElement>) => {
     e.preventDefault();
