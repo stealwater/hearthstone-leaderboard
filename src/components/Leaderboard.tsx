@@ -7,6 +7,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Toolbar, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 function Leaderboard({ region }: { region: string }) {
   const { ranks } = useListRank(region);
@@ -33,7 +34,9 @@ function Leaderboard({ region }: { region: string }) {
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell align="center">{row.rank}</TableCell>
-              <TableCell align="center">{row.accountName}</TableCell>
+              <TableCell align="center">
+                <Link to={`/player/${row.accountName}`}>{row.accountName}</Link>
+              </TableCell>
               <TableCell align="center">{row.rating}</TableCell>
             </TableRow>
           ))}
