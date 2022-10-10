@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { Navigate, RouteObject, useRoutes } from 'react-router-dom';
 import FooterSection from './components/FooterSection';
@@ -7,7 +7,8 @@ import AccountPage from './pages/AccountPage';
 import LandingPage from './pages/LandingPage';
 import { account } from './utils/appwriteSDK';
 import './App.css';
-import { Box } from '@mui/material';
+import { Box, createTheme, CssBaseline, ThemeProvider } from '@mui/material';
+import { grey } from '@mui/material/colors';
 
 function App() {
   useEffect(() => {
@@ -36,11 +37,35 @@ function App() {
 
   const element = useRoutes(routes);
 
+  const themeLight = createTheme({
+    palette: {
+      background: {
+        default: grey[50],
+      },
+    },
+  });
+
+  const themeDark = createTheme({
+    palette: {
+      background: {
+        default: grey[700],
+      },
+      text: {
+        primary: '#ffffff',
+      },
+    },
+  });
+
+  const [light, setLight] = useState(true);
+
   return (
     <QueryClientProvider client={queryClient}>
-      <TopBar />
-      <Box sx={{ minHeight: 'calc(100vh - 164px)' }}>{element}</Box>
-      <FooterSection />
+      <ThemeProvider theme={light ? themeLight : themeDark}>
+        <CssBaseline />
+        <TopBar setLight={setLight} light={light} />
+        <Box sx={{ minHeight: 'calc(100vh - 164px)' }}>{element}</Box>
+        <FooterSection />
+      </ThemeProvider>
     </QueryClientProvider>
   );
 }

@@ -11,7 +11,7 @@ function AccountPage() {
     searchParams.get('region') || 'AP'
   );
 
-  if (!accounts) return <div>Loading...</div>;
+  if (!accounts) return <></>;
   if (accounts.length === 0) return <div>Not Found player: {accountName}</div>;
 
   return (
