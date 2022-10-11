@@ -18,9 +18,6 @@ function TopBar({
   light: boolean;
   setLight: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
-  const theme = useTheme();
-  const match = useMediaQuery(theme.breakpoints.up('md'));
-
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -33,11 +30,7 @@ function TopBar({
           >
             HSBG
           </Typography>
-          <Box
-            ml="auto"
-            mr={2}
-            sx={{ maxWidth: 600, minWidth: match ? 400 : 200 }}
-          >
+          <Box ml="auto" mr={2} sx={{ maxWidth: 600, minWidth: 200 }}>
             <SearchBox />
           </Box>
           <IconButton size="small" color="inherit" sx={{ mr: 2 }}>

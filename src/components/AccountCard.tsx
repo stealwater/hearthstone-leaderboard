@@ -22,7 +22,7 @@ function AccountCard({ account }: { account: Models.Document }) {
         maxWidth: 1200,
       }}
     >
-      <Grid container alignItems="center">
+      <Grid container alignItems="center" mb={2}>
         <Grid item mr={2}>
           <Typography variant="h2">{account.accountName}</Typography>
         </Grid>
@@ -47,18 +47,14 @@ function AccountCard({ account }: { account: Models.Document }) {
           </Typography>
         </Grid>
       </Grid>
-      <Grid container alignItems="center">
-        <Grid item mx={1}>
-          <Typography variant="h5" component="span">
-            Rank: {account.rank}, Rating: {account.rating}
-          </Typography>
-        </Grid>
-      </Grid>
-      <Grid container>
-        <Grid item mx={1} mt={4} sm={12}>
-          <RatingHistoryCard account={account} />
-        </Grid>
-      </Grid>
+      <Box>
+        <Typography variant="h5" component="span">
+          Rank: {account.rank}, Rating: {account.rating}
+        </Typography>
+      </Box>
+      <Box>
+        <RatingHistoryCard account={account} />
+      </Box>
     </Box>
   );
 }

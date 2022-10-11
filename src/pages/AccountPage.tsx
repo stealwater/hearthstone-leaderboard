@@ -1,5 +1,6 @@
 import { useParams, useSearchParams } from 'react-router-dom';
 import AccountCard from '../components/AccountCard';
+import NotFoundPlayerCard from '../components/NotFoundPlayerCard';
 import useSearchAccount from '../hooks/useSearchAccount';
 
 function AccountPage() {
@@ -12,13 +13,9 @@ function AccountPage() {
   );
 
   if (!accounts) return <></>;
-  if (accounts.length === 0) return <div>Not Found player: {accountName}</div>;
+  if (accounts.length === 0) return <NotFoundPlayerCard />;
 
-  return (
-    <>
-      <AccountCard account={accounts[0]} />
-    </>
-  );
+  return <AccountCard account={accounts[0]} />;
 }
 
 export default AccountPage;
