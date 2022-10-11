@@ -102,7 +102,7 @@ function RatingHistoryChart({
     type: 'line',
     datasets: [
       {
-        label: 'rating',
+        label: 'Rating',
         data: ratingData,
         borderColor: blue[500],
         backgroundColor: blue[500],

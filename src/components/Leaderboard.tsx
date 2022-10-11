@@ -6,11 +6,17 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Link, Toolbar, Typography } from '@mui/material';
+import {
+  Box,
+  CircularProgress,
+  Link,
+  Toolbar,
+  Typography,
+} from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
 
 function Leaderboard({ region }: { region: string }) {
-  const { ranks } = useListRank(region);
+  const { data, isLoading } = useListRank(region);
 
   return (
     <TableContainer component={Paper}>
@@ -28,7 +34,24 @@ function Leaderboard({ region }: { region: string }) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {ranks?.map((row) => (
+          {isLoading && (
+            <tr>
+              <td colSpan={3}>
+                <Box
+                  height={100}
+                  mx="auto"
+                  display="flex"
+                  justifyContent="center"
+                  alignItems="center"
+                  flexDirection="row"
+                  flexWrap="wrap"
+                >
+                  <CircularProgress />
+                </Box>
+              </td>
+            </tr>
+          )}
+          {data?.documents?.map((row) => (
             <TableRow
               key={row.$id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
