@@ -8,8 +8,6 @@ const useListRank = (region: string, pageSize = 25, seasonId = 7) => {
   const HOOK_ID = 'USE_LIST_RANK';
   const [page, setPage] = useState(0);
 
-  console.log('useListRank');
-
   const fetchRank = async (
     region: string,
     page: number,
