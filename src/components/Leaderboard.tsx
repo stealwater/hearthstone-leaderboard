@@ -8,6 +8,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import {
   Box,
+  Button,
   CircularProgress,
   Grid,
   Link,
@@ -17,8 +18,9 @@ import {
 import { Link as RouterLink } from 'react-router-dom';
 import { Models } from 'appwrite';
 import { green, red } from '@mui/material/colors';
+import { KeyboardDoubleArrowRight } from '@mui/icons-material';
 
-function Rank({ account }: { account: Models.Document }) {
+export function Rank({ account }: { account: Models.Document }) {
   const rankChanged = account.rank - account.oldRank;
   const symbol = rankChanged < 0 ? '↑' : rankChanged > 0 ? '↓' : '=';
   const color = rankChanged < 0 ? green[500] : rankChanged > 0 ? red[500] : '';
@@ -39,7 +41,7 @@ function Rank({ account }: { account: Models.Document }) {
   );
 }
 
-function Rating({ account }: { account: Models.Document }) {
+export function Rating({ account }: { account: Models.Document }) {
   const ratingChanged = account.rating - account.oldRating;
   const color =
     ratingChanged > 0 ? green[500] : ratingChanged < 0 ? red[500] : '';
@@ -62,6 +64,15 @@ function Leaderboard({ region }: { region: string }) {
       <Toolbar>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           {region}
+        </Typography>
+        <Typography>
+          <Button
+            to={`/leaderboard/${region}`}
+            component={RouterLink}
+            endIcon={<KeyboardDoubleArrowRight />}
+          >
+            More
+          </Button>
         </Typography>
       </Toolbar>
       <Table size="small" aria-label="ranking table">

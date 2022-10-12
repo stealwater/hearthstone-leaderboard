@@ -10,6 +10,7 @@ import './App.css';
 import { Box, createTheme, CssBaseline, ThemeProvider } from '@mui/material';
 import { grey } from '@mui/material/colors';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import LeaderboardPage from './pages/LeaderboardPage';
 
 function App() {
   useEffect(() => {
@@ -29,6 +30,10 @@ function App() {
     {
       path: '/player/:accountName',
       element: <AccountPage />,
+    },
+    {
+      path: '/leaderboard/:region',
+      element: <LeaderboardPage />,
     },
     {
       path: '*',
