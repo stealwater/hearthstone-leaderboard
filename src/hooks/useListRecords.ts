@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import { Models, Query } from 'appwrite';
 import { useEffect, useState } from 'react';
 import AppwriteConfig from '../configs/appwriteConfig';

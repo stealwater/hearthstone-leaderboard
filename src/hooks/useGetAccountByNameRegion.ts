@@ -1,5 +1,5 @@
 import { Query } from 'appwrite';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import AppwriteConfig from '../configs/appwriteConfig';
 import { database } from '../utils/appwriteSDK';
 

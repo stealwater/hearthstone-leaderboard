@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Navigate, RouteObject, useRoutes } from 'react-router-dom';
 import FooterSection from './components/FooterSection';
 import TopBar from './components/TopBar';
@@ -9,6 +9,7 @@ import { account } from './utils/appwriteSDK';
 import './App.css';
 import { Box, createTheme, CssBaseline, ThemeProvider } from '@mui/material';
 import { grey } from '@mui/material/colors';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 function App() {
   useEffect(() => {
@@ -66,6 +67,7 @@ function App() {
         <Box sx={{ minHeight: 'calc(100vh - 164px)' }}>{element}</Box>
         <FooterSection />
       </ThemeProvider>
+      <ReactQueryDevtools initialIsOpen />
     </QueryClientProvider>
   );
 }

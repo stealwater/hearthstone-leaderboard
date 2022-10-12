@@ -2,7 +2,7 @@ import { database } from './../utils/appwriteSDK';
 import { Query } from 'appwrite';
 import { useState } from 'react';
 import AppwriteConfig from '../configs/appwriteConfig';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 
 const useListRank = (region: string, pageSize = 25, seasonId = 7) => {
   const HOOK_ID = 'USE_LIST_RANK';
@@ -16,7 +16,7 @@ const useListRank = (region: string, pageSize = 25, seasonId = 7) => {
   ) => {
     const response = await database.listDocuments(
       AppwriteConfig.databaseId,
-      'rank',
+      'account',
       [
         Query.equal('region', region),
         Query.equal('seasonId', seasonId),
