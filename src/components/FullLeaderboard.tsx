@@ -17,7 +17,8 @@ import useInfiniteListRank from '../hooks/useInfiniteListRank';
 import React from 'react';
 
 function FullLeaderboard({ region }: { region: string }) {
-  const { data, isLoading, fetchNextPage } = useInfiniteListRank(region);
+  const { data, isLoading, fetchNextPage, hasNextPage } =
+    useInfiniteListRank(region);
 
   return (
     <TableContainer component={Paper}>
@@ -52,13 +53,15 @@ function FullLeaderboard({ region }: { region: string }) {
                   <TableCell align="center">{row.rating}</TableCell>
                   <TableCell align="center">
                     <Rating account={row} />
-                    {rowIndex === page.documents.length - 1 && (
-                      <Waypoint
-                        onEnter={() => {
-                          fetchNextPage();
-                        }}
-                      />
-                    )}
+                    {rowIndex === page.documents.length - 10 &&
+                      i === data.pages.length - 1 && (
+                        <Waypoint
+                          scrollableAncestor={window}
+                          onEnter={() => {
+                            fetchNextPage();
+                          }}
+                        />
+                      )}
                   </TableCell>
                 </TableRow>
               ))}
