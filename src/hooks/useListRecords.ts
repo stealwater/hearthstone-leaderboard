@@ -1,26 +1,23 @@
+import { useQuery } from 'react-query';
 import { Models, Query } from 'appwrite';
 import { useEffect, useState } from 'react';
 import AppwriteConfig from '../configs/appwriteConfig';
 import { database } from '../utils/appwriteSDK';
 
 const useListRecords = (accountId: string) => {
-  const [records, setRecords] = useState<Models.Document[]>();
+  const HOOK_ID = 'USE_LIST_RECORDS';
 
-  useEffect(() => {
-    const fetchRecords = async () => {
-      const response = await database.listDocuments(
-        AppwriteConfig.databaseId,
-        'record',
-        [Query.equal('accountId', accountId), Query.orderDesc('$createdAt')]
-      );
-      const records = response.documents;
-      setRecords(records);
-    };
-
-    fetchRecords();
-  }, [accountId]);
-
-  return { records };
+  return useQuery(
+    [HOOK_ID, accountId],
+    () =>
+      database.listDocuments(AppwriteConfig.databaseId, 'record', [
+        Query.equal('accountId', accountId),
+        Query.orderDesc('$createdAt'),
+      ]),
+    {
+      staleTime: 120000,
+    }
+  );
 };
 
 export default useListRecords;

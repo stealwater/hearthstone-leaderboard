@@ -1,5 +1,6 @@
 import {
   Box,
+  CircularProgress,
   Paper,
   Table,
   TableBody,
@@ -17,7 +18,8 @@ import useListRecords from '../hooks/useListRecords';
 import RatingHistoryChart from './RatingHistoryChart';
 
 function RatingHistoryCard({ account }: { account: Models.Document }) {
-  const { records } = useListRecords(account.$id);
+  const { data, isLoading } = useListRecords(account.$id);
+  const records = data?.documents;
 
   return (
     <>
@@ -34,11 +36,28 @@ function RatingHistoryCard({ account }: { account: Models.Document }) {
             <TableRow>
               <TableCell align="center">Rank</TableCell>
               <TableCell align="center">Rating</TableCell>
-              <TableCell align="center">(+/-)</TableCell>
+              <TableCell align="center">+ / -</TableCell>
               <TableCell align="center">Time</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
+            {isLoading && (
+              <tr>
+                <td colSpan={4}>
+                  <Box
+                    height={100}
+                    mx="auto"
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                    flexDirection="row"
+                    flexWrap="wrap"
+                  >
+                    <CircularProgress />
+                  </Box>
+                </td>
+              </tr>
+            )}
             {records?.map((row) => (
               <TableRow
                 key={row.$id}

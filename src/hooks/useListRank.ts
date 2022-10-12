@@ -1,6 +1,6 @@
 import { database } from './../utils/appwriteSDK';
-import { Models, Query } from 'appwrite';
-import { useEffect, useState } from 'react';
+import { Query } from 'appwrite';
+import { useState } from 'react';
 import AppwriteConfig from '../configs/appwriteConfig';
 import { useQuery } from 'react-query';
 
@@ -34,7 +34,7 @@ const useListRank = (region: string, pageSize = 25, seasonId = 7) => {
       [HOOK_ID, region, page, pageSize, seasonId],
       () => fetchRank(region, page, pageSize, seasonId),
       {
-        keepPreviousData: true,
+        staleTime: 120000,
       }
     );
 

@@ -2,19 +2,20 @@ import { useParams, useSearchParams } from 'react-router-dom';
 import AccountCard from '../components/AccountCard';
 import LoadingCard from '../components/LoadingCard';
 import NotFoundPlayerCard from '../components/NotFoundPlayerCard';
-import useSearchAccount from '../hooks/useSearchAccount';
+import useGetAccountByNameRegion from '../hooks/useGetAccountByNameRegion';
 
 function AccountPage() {
   const { accountName } = useParams();
   const [searchParams] = useSearchParams();
 
-  const { accounts } = useSearchAccount(
+  const { data, isLoading } = useGetAccountByNameRegion(
     accountName || '',
     searchParams.get('region') || 'AP'
   );
+  const accounts = data?.documents;
 
-  if (!accounts) return <LoadingCard />;
-  if (accounts.length === 0)
+  if (isLoading) return <LoadingCard />;
+  if (!accounts || accounts.length === 0)
     return <NotFoundPlayerCard accountName={accountName} />;
 
   return <AccountCard account={accounts[0]} />;
