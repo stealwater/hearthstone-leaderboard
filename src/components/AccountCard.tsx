@@ -43,7 +43,7 @@ function AccountCard({ account }: { account: Models.Document }) {
             />
           </Box>
           <Typography mt={1} variant="body2">
-            Last played: {moment(account.$updatedAt).fromNow()}
+            Last played: {moment(account.lastPlayed).fromNow()}
           </Typography>
         </Grid>
       </Grid>
