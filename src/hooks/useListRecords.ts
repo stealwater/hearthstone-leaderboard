@@ -15,6 +15,7 @@ const useListRecords = (accountId: string) => {
         Query.orderDesc('$createdAt'),
       ]),
     {
+      cacheTime: 120000,
       staleTime: 120000,
     }
   );

@@ -30,7 +30,7 @@ const useInfiniteListRank = (region: string, pageSize = 25, seasonId = 7) => {
   };
 
   return useInfiniteQuery(
-    [HOOK_ID],
+    [HOOK_ID, region, seasonId],
     ({ pageParam = 0 }) => fetchRank(region, pageSize, seasonId, pageParam),
     {
       cacheTime: 120000,

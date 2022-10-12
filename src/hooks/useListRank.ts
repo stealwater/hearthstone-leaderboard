@@ -34,6 +34,7 @@ const useListRank = (region: string, pageSize = 25, seasonId = 7) => {
       [HOOK_ID, region, page, pageSize, seasonId],
       () => fetchRank(region, page, pageSize, seasonId),
       {
+        cacheTime: 120000,
         staleTime: 120000,
       }
     );
