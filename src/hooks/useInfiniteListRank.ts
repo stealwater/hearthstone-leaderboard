@@ -19,6 +19,7 @@ const useInfiniteListRank = (region: string, pageSize = 25, seasonId = 7) => {
       [
         Query.equal('region', region),
         Query.equal('seasonId', seasonId),
+        Query.lessThanEqual('rank', MAX_RECORD),
         Query.orderAsc('rank'),
         Query.limit(pageSize),
         Query.offset(page * pageSize),
@@ -32,9 +33,10 @@ const useInfiniteListRank = (region: string, pageSize = 25, seasonId = 7) => {
     [HOOK_ID],
     ({ pageParam = 0 }) => fetchRank(region, pageSize, seasonId, pageParam),
     {
+      cacheTime: 120000,
       staleTime: 120000,
       getNextPageParam: (lastPage, pages) =>
-        lastPage.lastIndex < MAX_RECORD ? lastPage.page + 1 : undefined,
+        lastPage.lastIndex < lastPage.total ? lastPage.page + 1 : undefined,
     }
   );
 };
