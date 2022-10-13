@@ -56,12 +56,6 @@ function App() {
   const themeDark = createTheme({
     palette: {
       mode: 'dark',
-      background: {
-        default: grey[700],
-      },
-      text: {
-        primary: '#ffffff',
-      },
     },
   });
 
