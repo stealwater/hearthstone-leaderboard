@@ -1,4 +1,5 @@
-import { Box, Container, Typography } from '@mui/material';
+import { Box, Container, Link, Tooltip, Typography } from '@mui/material';
+import GitHubIcon from '@mui/icons-material/GitHub';
 
 function FooterSection() {
   return (
@@ -12,9 +13,22 @@ function FooterSection() {
           height: 100,
         }}
       >
-        <Typography variant="caption" color="initial">
-          HSBG © 2022
-        </Typography>
+        <Box mr={4}>
+          <Typography variant="body1" color="initial">
+            HSBG © 2022
+          </Typography>
+        </Box>
+        <Box>
+          <Tooltip title="Source Code">
+            <Link
+              href="https://github.com/stealwater/hearthstone-leaderboard"
+              color="#000000"
+              target="_blank"
+            >
+              <GitHubIcon />
+            </Link>
+          </Tooltip>
+        </Box>
       </Box>
     </Container>
   );
