@@ -14,15 +14,13 @@ function FooterSection() {
         }}
       >
         <Box mr={4}>
-          <Typography variant="body1" color="initial">
-            HSBG © 2022
-          </Typography>
+          <Typography variant="body1">HSBG © 2022</Typography>
         </Box>
         <Box>
           <Tooltip title="Source Code">
             <Link
               href="https://github.com/stealwater/hearthstone-leaderboard"
-              color="#000000"
+              sx={{ color: 'text.primary' }}
               target="_blank"
             >
               <GitHubIcon />

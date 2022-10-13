@@ -11,6 +11,7 @@ import { Box, createTheme, CssBaseline, ThemeProvider } from '@mui/material';
 import { grey } from '@mui/material/colors';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import LeaderboardPage from './pages/LeaderboardPage';
+import useLocalStorage from './hooks/useLocalStorage';
 
 function App() {
   useEffect(() => {
@@ -45,6 +46,7 @@ function App() {
 
   const themeLight = createTheme({
     palette: {
+      mode: 'light',
       background: {
         default: grey[50],
       },
@@ -53,6 +55,7 @@ function App() {
 
   const themeDark = createTheme({
     palette: {
+      mode: 'dark',
       background: {
         default: grey[700],
       },
@@ -62,7 +65,7 @@ function App() {
     },
   });
 
-  const [light, setLight] = useState(true);
+  const [light, setLight] = useLocalStorage('HSBG_THEME', true);
 
   return (
     <QueryClientProvider client={queryClient}>

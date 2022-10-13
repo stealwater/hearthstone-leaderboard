@@ -33,9 +33,14 @@ function TopBar({
           <Box ml="auto" mr={2} sx={{ maxWidth: 600, minWidth: 200 }}>
             <SearchBox />
           </Box>
-          {/* <IconButton size="small" color="inherit" sx={{ mr: 2 }}>
+          <IconButton
+            size="small"
+            color="inherit"
+            sx={{ mr: 2 }}
+            onClick={() => setLight((light) => !light)}
+          >
             {light ? <LightMode /> : <DarkMode />}
-          </IconButton> */}
+          </IconButton>
         </Toolbar>
       </AppBar>
     </Box>
