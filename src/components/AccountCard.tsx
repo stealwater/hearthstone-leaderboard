@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import useDocTitle from '../hooks/useDocTitle';
 import RatingHistoryCard from './RatingHistoryCard';
 
-function RankChanged({ account }: { account: Models.Document }) {
+function RankChangedIcon({ account }: { account: Models.Document }) {
   const rankChanged = account.rank - account.oldRank;
   const symbol = rankChanged < 0 ? '📈' : rankChanged > 0 ? '📉' : '';
   const changedValue = Math.abs(rankChanged);
@@ -19,6 +19,42 @@ function SuperHot({ account }: { account: Models.Document }) {
   if (ratingChanged > 150) return <Typography>🔥</Typography>;
 
   return <></>;
+}
+
+function RatingChanged({ account }: { account: Models.Document }) {
+  const ratingChanged = account.rating - account.oldRating;
+  const color =
+    ratingChanged > 0
+      ? green[500]
+      : ratingChanged < 0
+      ? red[500]
+      : 'text.primary';
+
+  if (ratingChanged === 0) return <></>;
+
+  return (
+    <span>
+      (
+      <span style={{ color }}>
+        {ratingChanged > 0 ? '+' : ''}
+        {ratingChanged !== 0 ? ratingChanged : ''}
+      </span>
+      )
+    </span>
+  );
+}
+
+function RankChanged({ account }: { account: Models.Document }) {
+  const rankChanged = account.rank - account.oldRank;
+  const color =
+    rankChanged < 0 ? green[500] : rankChanged > 0 ? red[500] : 'text.primary';
+
+  return (
+    <span style={{ color }}>
+      {rankChanged < 0 ? '↑' : rankChanged > 0 ? '↓' : ''}
+      {rankChanged !== 0 ? Math.abs(rankChanged) : ''}
+    </span>
+  );
 }
 
 function AccountCard({ account }: { account: Models.Document }) {
@@ -51,7 +87,7 @@ function AccountCard({ account }: { account: Models.Document }) {
             />
           </Box>
           <Box mr={1} display="inline-block">
-            <RankChanged account={account} />
+            <RankChangedIcon account={account} />
           </Box>
           <Box mr={1} display="inline-block">
             <SuperHot account={account} />
@@ -63,7 +99,8 @@ function AccountCard({ account }: { account: Models.Document }) {
       </Grid>
       <Box>
         <Typography variant="h5" component="span">
-          Rank: {account.rank}, Rating: {account.rating}
+          Rank: {account.rank} <RankChanged account={account} /> , Rating:{' '}
+          {account.rating} <RatingChanged account={account} />
         </Typography>
       </Box>
       <Box>
